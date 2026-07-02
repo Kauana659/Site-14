@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Paulo Perez Peres e Outro — Produção Rural</title>
+  <meta name="og:title" content="Paulo Perez Peres e Outro — Produção Rural" />
+  <meta name="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Paulo Perez Peres e Outro — Produção Rural" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary: #2d3b23;
+      --primary-2: #40522f;
+      --accent: #c99a3c;
+      --accent-dark: #a67a28;
+      --light-bg: #f7f3e8;
+      --white: #fffdf8;
+      --text: #2a2620;
+      --muted: #695f4d;
+      --border: #e8ddc4;
+      --footer-bg: #1b2415;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
+    }
+
+    .sans { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+
+    /* faixa de "sulcos" — elemento assinatura do plantio em linhas */
+    .furrow-divider {
+      height: 10px;
+      width: 100%;
+      background: repeating-linear-gradient(
+        -35deg,
+        var(--accent) 0px,
+        var(--accent) 10px,
+        var(--primary-2) 10px,
+        var(--primary-2) 20px
+      );
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      height: 60px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: var(--white);
+      font-weight: 700;
+      font-size: 0.88rem;
+      text-decoration: none;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      letter-spacing: 0.02em;
+    }
+    .nav-brand .logo-initial {
+      background: var(--accent);
+      color: var(--primary);
+      width: 34px;
+      height: 34px;
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      list-style: none;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      font-size: 0.88rem;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-links .btn-nav {
+      background: var(--accent);
+      color: var(--primary);
+      padding: 0.35rem 0.9rem;
+      border-radius: 3px;
+      font-weight: 700;
+    }
+
+    /* HERO */
+    #home {
+      background:
+        linear-gradient(160deg, rgba(45,59,35,0.94) 0%, rgba(64,82,47,0.90) 100%);
+      color: var(--white);
+      padding: 5rem 2rem 4rem;
+      text-align: center;
+    }
+    #home h1 {
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.2rem;
+      line-height: 1.25;
+    }
+    #home .eyebrow {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    #home p {
+      max-width: 680px;
+      margin: 0 auto 2rem;
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.85);
+    }
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: var(--primary);
+      padding: 0.7rem 1.5rem;
+      border-radius: 3px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover { background: var(--accent-dark); color: var(--white); }
+    .btn-secondary {
+      background: rgba(255,255,255,0.08);
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.4);
+      padding: 0.7rem 1.5rem;
+      border-radius: 3px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: background 0.2s;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.18); }
+
+    /* SECTIONS */
+    section { padding: 4rem 2rem; }
+    .container { max-width: 900px; margin: 0 auto; }
+    .section-label {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent-dark);
+      margin-bottom: 0.5rem;
+    }
+    h2 {
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 1.2rem;
+      line-height: 1.3;
+    }
+    p { color: var(--muted); margin-bottom: 1rem; font-family: 'Segoe UI', system-ui, sans-serif; font-size: 0.97rem; }
+    p:last-child { margin-bottom: 0; }
+
+    /* SOBRE */
+    #sobre { background: var(--light-bg); }
+    .sobre-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: start;
+      margin-top: 2rem;
+    }
+    @media (max-width: 640px) { .sobre-grid { grid-template-columns: 1fr; } }
+    .sobre-box {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      border-radius: 4px;
+      padding: 1.5rem;
+    }
+    .sobre-box h3 {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-dark);
+      margin-bottom: 0.6rem;
+      font-weight: 700;
+    }
+    .sobre-box p { font-size: 0.95rem; }
+
+    /* ATIVIDADES */
+    #servicos { background: var(--white); }
+    .services-list {
+      list-style: none;
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+    }
+    .services-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.9rem;
+      background: var(--light-bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1rem 1.2rem;
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+    .services-list .tag {
+      flex-shrink: 0;
+      font-weight: 800;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      color: var(--white);
+      background: var(--primary-2);
+      padding: 0.25rem 0.5rem;
+      border-radius: 3px;
+      margin-top: 1px;
+      white-space: nowrap;
+    }
+    .services-list .tag.principal { background: var(--accent-dark); }
+
+    /* DADOS */
+    #dados { background: var(--light-bg); }
+    .dados-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 2rem;
+      background: var(--white);
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+    }
+    .dados-table tr { border-bottom: 1px solid var(--border); }
+    .dados-table tr:last-child { border-bottom: none; }
+    .dados-table td {
+      padding: 0.85rem 1.1rem;
+      font-size: 0.92rem;
+    }
+    .dados-table td:first-child {
+      font-weight: 700;
+      color: var(--primary);
+      width: 38%;
+      background: #efe6cd;
+    }
+    .dados-table td:last-child { color: var(--text); }
+    .dados-table a { color: var(--accent-dark); text-decoration: none; }
+
+    /* SÓCIOS */
+    #socios { background: var(--white); }
+    .socios-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin-top: 2rem;
+    }
+    @media (max-width: 640px) { .socios-grid { grid-template-columns: 1fr; } }
+    .socio-card {
+      background: var(--light-bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1.4rem 1.6rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .socio-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 3px;
+      background: var(--accent);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+    }
+    .socio-card h3 { font-size: 1rem; color: var(--primary); margin-bottom: 0.2rem; font-family: 'Segoe UI', system-ui, sans-serif; }
+    .socio-card p { font-size: 0.9rem; margin-bottom: 0; }
+
+    /* MISSÃO */
+    #missao { background: var(--primary); color: var(--white); }
+    #missao h2 { color: var(--white); }
+    #missao p { color: rgba(255,255,255,0.8); }
+    .missao-highlight {
+      margin-top: 2rem;
+      background: rgba(255,255,255,0.07);
+      border-left: 3px solid var(--accent);
+      border-radius: 4px;
+      padding: 1.2rem 1.4rem;
+      font-size: 0.96rem;
+      color: rgba(255,255,255,0.9);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+    }
+
+    /* CONTATO */
+    #contato-section { background: var(--light-bg); }
+    .contato-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    @media (max-width: 800px) { .contato-grid { grid-template-columns: 1fr; } }
+    .contato-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1.4rem;
+    }
+    .contato-card h3 { font-size: 1rem; color: var(--primary); margin-bottom: 0.5rem; font-family: 'Segoe UI', system-ui, sans-serif; }
+    .contato-card p { font-size: 0.93rem; }
+    .contato-card a { color: var(--accent-dark); text-decoration: none; }
+
+    /* FOOTER */
+    footer {
+      background: var(--footer-bg);
+      color: rgba(255,255,255,0.6);
+      padding: 2rem;
+      font-size: 0.8rem;
+      text-align: center;
+      line-height: 1.8;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+    }
+    footer strong { color: rgba(255,255,255,0.85); }
+    .footer-links {
+      margin-top: 0.8rem;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      font-size: 0.8rem;
+    }
+    .footer-links a:hover { color: rgba(255,255,255,0.85); }
+    .back-top {
+      display: inline-block;
+      margin-top: 1rem;
+      background: var(--accent);
+      color: var(--primary);
+      padding: 0.35rem 0.8rem;
+      border-radius: 3px;
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    /* MODAL */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal-box {
+      background: var(--white);
+      border-radius: 4px;
+      max-width: 660px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 2rem;
+      position: relative;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+    }
+    .modal-box h2 { font-size: 1.2rem; margin-bottom: 1rem; font-family: Georgia, serif; }
+    .modal-box h3 { font-size: 0.95rem; color: var(--accent-dark); margin: 1.2rem 0 0.4rem; }
+    .modal-box p, .modal-box li { font-size: 0.88rem; color: var(--muted); }
+    .modal-box ul { padding-left: 1.2rem; }
+    .modal-close {
+      position: absolute;
+      top: 1rem; right: 1rem;
+      background: none; border: none;
+      font-size: 1.3rem; cursor: pointer; color: var(--muted);
+    }
+
+    /* MOBILE NAV */
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      nav { padding: 0 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#home">
+    <span class="logo-initial">P</span>
+    PAULO PEREZ PERES E OUTRO
+  </a>
+  <ul class="nav-links">
+    <li><a href="#home">Início</a></li>
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#servicos">Atividades</a></li>
+    <li><a href="#dados">Dados oficiais</a></li>
+    <li><a href="https://wa.me/5545987560054?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." class="btn-nav" target="_blank" rel="noopener">Contato</a></li>
+  </ul>
+</nav>
+
+<div class="furrow-divider"></div>
+
+<!-- HERO -->
+<section id="home" style="padding-top:4.5rem;">
+  <div class="eyebrow sans">Produção Rural · Cana-de-açúcar · Milho · Soja</div>
+  <h1>Paulo Perez Peres e Outro</h1>
+  <p>Produção rural em São José da Bela Vista/SP, dedicada ao cultivo de cana-de-açúcar, milho, soja e outros cereais, com trabalho de campo sério e comprometido com a terra.</p>
+  <p style="color:rgba(255,255,255,0.82); max-width:680px; margin:0 auto 2rem;">Nosso compromisso é conduzir a produção com responsabilidade, tradição rural e atenção a cada etapa da safra.</p>
+  <div class="hero-btns">
+    <a href="#servicos" class="btn-primary">Ver atividades</a>
+    <a href="https://wa.me/5545987560054?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." class="btn-secondary" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+  </div>
+</section>
+
+<div class="furrow-divider"></div>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="container">
+    <div class="section-label">QUEM SOMOS?</div>
+    <h2>Quem somos</h2>
+    <p><strong>Paulo Perez Peres e Outro</strong>, registrada sob o CNPJ 27.078.931/0002-40 (Inscrição Estadual SP 644.017.368.110), com início de atividades em 01/07/2023, está localizada em São José da Bela Vista/SP.</p>
+    <p>A empresa atua no cultivo de cana-de-açúcar, tendo como atividades secundárias o cultivo de milho, soja e outros cereais. Conforme seu cadastro público, é uma empresa constituída como Produtor Rural (Pessoa Física), do tipo Filial, sem enquadramento de porte.</p>
+    <div class="sobre-grid">
+      <div class="sobre-box">
+        <h3>Nossa atuação</h3>
+        <p>Conduzimos a produção rural com dedicação e conhecimento de campo, unindo tradição agrícola e cuidado com a lavoura para entregar resultados consistentes a cada safra.</p>
+      </div>
+      <div class="sobre-box">
+        <h3>Endereço cadastral</h3>
+        <p>Rodovia Fábio Talarico, Km 54, Entrada à Esquerda, S/N<br>Sítio São José — Zona Rural<br>São José da Bela Vista – SP, CEP 14440-000</p>
+        <p style="margin-top:0.8rem;">Na Paulo Perez Peres e Outro, valorizamos o trabalho no campo, a tradição familiar e o compromisso com a qualidade da produção.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ATIVIDADES -->
+<section id="servicos">
+  <div class="container">
+    <div class="section-label">O QUE PRODUZIMOS</div>
+    <h2>Atividades — CNAEs</h2>
+    <ul class="services-list">
+      <li><span class="tag principal">PRINCIPAL</span> 01.13-0-00 — Cultivo de cana-de-açúcar</li>
+      <li><span class="tag">SECUNDÁRIA</span> 01.11-3-02 — Cultivo de milho</li>
+      <li><span class="tag">SECUNDÁRIA</span> 01.15-6-00 — Cultivo de soja</li>
+      <li><span class="tag">SECUNDÁRIA</span> 01.11-3-99 — Cultivo de outros cereais não especificados anteriormente</li>
+    </ul>
+  </div>
+</section>
+
+<!-- DADOS OFICIAIS -->
+<section id="dados">
+  <div class="container">
+    <div class="section-label">REGISTRO PÚBLICO</div>
+    <h2>Dados oficiais</h2>
+    <table class="dados-table">
+      <tr><td>Razão Social</td><td>Paulo Perez Peres e Outro</td></tr>
+      <tr><td>CNPJ</td><td>27.078.931/0002-40</td></tr>
+      <tr><td>Inscrição Estadual (SP)</td><td>644.017.368.110</td></tr>
+      <tr><td>Data de Abertura</td><td>01/07/2023 (3 anos e 1 dia)</td></tr>
+      <tr><td>Porte</td><td>Sem Enquadramento</td></tr>
+      <tr><td>Natureza Jurídica</td><td>Produtor Rural (Pessoa Física)</td></tr>
+      <tr><td>Tipo</td><td>Filial</td></tr>
+      <tr><td>Situação Cadastral</td><td>Ativa</td></tr>
+      <tr><td>Data da Situação</td><td>01/07/2023</td></tr>
+      <tr><td>Atividade Principal (CNAE)</td><td>01.13-0-00 — Cultivo de cana-de-açúcar</td></tr>
+      <tr><td>Endereço</td><td>Rodovia Fábio Talarico, Km 54, Entrada à Esquerda, S/N — Sítio São José, Zona Rural, São José da Bela Vista – SP, CEP 14440-000</td></tr>
+      <tr><td>Município</td><td><a href="https://cnpj.biz/empresas/sao-jose-da-bela-vista-sp" target="_blank" rel="noopener">São José da Bela Vista</a></td></tr>
+      <tr><td>Estado</td><td><a href="https://cnpj.biz/empresas/estado/SP" target="_blank" rel="noopener">São Paulo</a></td></tr>
+      <tr><td>Telefone</td><td>(45) 98756-0054</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- SÓCIOS -->
+<section id="socios">
+  <div class="container">
+    <div class="section-label">QUADRO DE SÓCIOS E ADMINISTRADORES</div>
+    <h2>Responsáveis pela produção</h2>
+    <div class="socios-grid">
+      <div class="socio-card">
+        <div class="socio-avatar">P</div>
+        <div>
+          <h3>Paulo Perez Peres</h3>
+          <p>Produtor Rural</p>
+        </div>
+      </div>
+      <div class="socio-card">
+        <div class="socio-avatar">F</div>
+        <div>
+          <h3>Felipe Perez Peres</h3>
+          <p>Produtor Rural</p>
+        </div>
+      </div>
+    </div>
+    <p style="margin-top:1.2rem;">Qualificação do responsável pela empresa: <strong style="color:var(--primary);">Produtor Rural</strong>.</p>
+  </div>
+</section>
+
+<!-- MISSÃO -->
+<section id="missao">
+  <div class="container">
+    <div class="section-label" style="color:rgba(255,255,255,0.6);">NOSSA MISSÃO</div>
+    <h2>Nossa missão</h2>
+    <p>A missão da Paulo Perez Peres e Outro é conduzir a produção rural de cana-de-açúcar, milho e soja com responsabilidade, técnica e respeito à terra, contribuindo para uma cadeia produtiva sólida em São José da Bela Vista/SP e região.</p>
+    <div class="missao-highlight">
+      Nosso compromisso é transformar tradição familiar, trabalho de campo e conhecimento agrícola em safras consistentes, sempre com foco em qualidade, responsabilidade e continuidade da atividade rural.
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato-section">
+  <div class="container">
+    <div class="section-label">FALE CONOSCO</div>
+    <h2>Contato</h2>
+    <div class="contato-grid">
+      <div class="contato-card">
+        <h3>📞 Telefone</h3>
+        <p><a href="tel:+5545987560054">(45) 98756-0054</a></p>
+      </div>
+      <div class="contato-card">
+        <h3>💬 WhatsApp</h3>
+        <p><a href="https://wa.me/5545987560054?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener">Chamar no WhatsApp →</a></p>
+      </div>
+      <div class="contato-card">
+        <h3>✉️ E-mail</h3>
+        <p><a href="mailto:contato@pauloperezpereseoutro">contato@pauloperezpereseoutro</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <strong>Paulo Perez Peres e Outro</strong><br>
+  CNPJ: 27.078.931/0002-40 | IE: 644.017.368.110 | Data de Abertura: 01/07/2023 | Porte: Sem Enquadramento | Natureza Jurídica: Produtor Rural (Pessoa Física) | Situação Cadastral: ATIVA | Tipo: FILIAL | Endereço: Rodovia Fábio Talarico, Km 54, Entrada à Esquerda, S/N, Sítio São José, Zona Rural, São José da Bela Vista – SP, CEP 14440-000 | E-mail: contato@pauloperezpereseoutro<br><br>
+  ©️ 2026 Paulo Perez Peres e Outro. Todos os direitos reservados.
+  <div class="footer-links">
+    <a href="#" id="privacy-link">Política de Privacidade</a>
+    <a href="#home" class="back-top">Voltar ao topo ↑</a>
+  </div>
+</footer>
+
+<!-- MODAL PRIVACIDADE -->
+<div class="modal-overlay" id="privacy-modal">
+  <div class="modal-box">
+    <button class="modal-close" id="modal-close-btn">✕</button>
+    <h2>Política de Privacidade</h2>
+    <p><strong>Paulo Perez Peres e Outro</strong><br>
+    CNPJ: 27.078.931/0002-40<br>
+    Endereço: Rodovia Fábio Talarico, Km 54, Entrada à Esquerda, S/N, Sítio São José, Zona Rural, São José da Bela Vista – SP, CEP 14440-000</p>
+
+    <h3>1. Finalidade</h3>
+    <p>Esta Política de Privacidade descreve como a Paulo Perez Peres e Outro coleta, utiliza, armazena e protege dados pessoais de clientes, parceiros, fornecedores e usuários que interagem conosco por meio de nossos canais de comunicação ou durante a contratação e execução de nossas atividades.</p>
+
+    <h3>2. Dados Coletados</h3>
+    <p>Coletamos apenas os dados necessários para as finalidades descritas nesta política, incluindo:</p>
+    <ul>
+      <li>Nome, e-mail, telefone e informações necessárias ao atendimento;</li>
+      <li>Registros de comunicação, contratos, propostas e histórico de negociação;</li>
+      <li>Dados de navegação (quando aplicável), conforme políticas das plataformas utilizadas.</li>
+    </ul>
+
+    <h3>3. Uso dos Dados</h3>
+    <p>Os dados pessoais coletados são utilizados para:</p>
+    <ul>
+      <li>Gestão comercial da produção e negociações;</li>
+      <li>Comunicação operacional, administrativa e contratual;</li>
+      <li>Cumprimento de obrigações legais e regulatórias;</li>
+      <li>Melhoria contínua dos processos internos.</li>
+    </ul>
+
+    <h3>4. Compartilhamento de Dados</h3>
+    <p>Não comercializamos dados pessoais. O compartilhamento ocorre apenas com parceiros essenciais à execução das atividades, mediante confidencialidade, ou quando exigido por lei, ordem judicial ou autoridade competente.</p>
+
+    <h3>5. Direitos do Titular (LGPD)</h3>
+    <p>Nos termos da LGPD (Lei nº 13.709/2018), o titular pode solicitar confirmação de tratamento, acesso, correção, anonimização, bloqueio, eliminação, portabilidade e revogação de consentimentos.</p>
+
+    <h3>6. Armazenamento e Segurança</h3>
+    <p>Adotamos medidas técnicas e administrativas adequadas para proteger os dados pessoais contra acessos não autorizados, perdas ou divulgações indevidas.</p>
+
+    <h3>7. Contato</h3>
+    <p>📞 Telefone: (45) 98756-0054<br>✉️ E-mail: contato@pauloperezpereseoutro</p>
+
+    <p style="margin-top:1.2rem; font-size:0.8rem;">Paulo Perez Peres e Outro — CNPJ 27.078.931/0002-40 — ©️ 2026. Todos os direitos reservados.</p>
+  </div>
+</div>
+
+<script>
+  const privacyLink = document.getElementById('privacy-link');
+  const privacyModal = document.getElementById('privacy-modal');
+  const modalCloseBtn = document.getElementById('modal-close-btn');
+
+  privacyLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    privacyModal.classList.add('active');
+  });
+  modalCloseBtn.addEventListener('click', () => {
+    privacyModal.classList.remove('active');
+  });
+  privacyModal.addEventListener('click', (e) => {
+    if (e.target === privacyModal) privacyModal.classList.remove('active');
+  });
+</script>
+
+</body>
+</html>
